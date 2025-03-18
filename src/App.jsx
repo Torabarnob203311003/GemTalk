@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AiTwotoneDelete } from "react-icons/ai";
+import Ans from './Components/Ans';
 import { URL } from './Data/constants';
 
 function App() {
@@ -13,20 +14,24 @@ function App() {
   };
 
   const askQuestion = async () => {
+    try {
+      let response = await fetch(URL, {
+        method: 'POST',
+        body: JSON.stringify(payload),
+      });
 
-    let response = await fetch(URL, {
-      method: 'POST',
+      response = await response.json();
+      let dataString = response.candidates[0].content.parts[0].text;
+      dataString = dataString.split("*");
+      dataString = dataString.map((item) => item.trim());
+      setResult(dataString);
 
-      body: JSON.stringify(payload),
-    });
-
-    response = await response.json();
-    setResult(response.candidates[0].content.parts[0].text
-    );  // Fixed console log
-
-    // Set the result from the response
-
-  }
+      console.log(dataString); // Optional: log to check the result
+    } catch (error) {
+      console.error("Error fetching the response:", error);
+      setResult(["Something went wrong. Please try again."]);
+    }
+  };
 
   return (
     <div className='grid grid-cols-5 text-center h-screen'>
@@ -35,11 +40,19 @@ function App() {
           Recent Searches <AiTwotoneDelete />
         </h1>
       </div>
-      <div className='col-span-4 pt-[750px] bg-zinc-700 flex flex-col'>
-        <div className="container h-110  overflow-auto scroll-smooth no-scrollbar">
-          <div className='text-white'> {result}</div>
+      <div className='col-span-4 bg-zinc-700 flex flex-col'>
+        {/* Answers container with scroll and aligned to top */}
+        <div className="container h-full overflow-auto scroll-smooth no-scrollbar flex flex-col justify-start pt-5">
           <div className='text-white'>
-            {result ? result : "What Is Your Query Today ??"}
+            <ul>
+              {
+                result && result.map((item, index) => (
+                  <li className='text-left px-10 py-1' key={index}>
+                    <Ans ans={item} />
+                  </li>
+                ))
+              }
+            </ul>
           </div>
         </div>
 
