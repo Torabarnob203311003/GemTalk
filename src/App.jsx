@@ -72,6 +72,15 @@ function App() {
 
   return (
     <div className="grid grid-cols-5 text-center h-screen">
+
+      {/* Navbar */}
+      <div className=" items-center fixed top-0 left-0 right-0 ">
+        <div className="flex justify-center items-center  bg-gradient-to-tl from-slate-800 via-blue-200 to-zinc-400 bg-clip-text text-transparent">
+          <div className="text-3xl font-bold">GEM-TALK</div>
+        </div>
+      </div>
+
+
       {showIntro && (
         <div className="absolute top-0 left-0 right-5 bottom-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-gradient-to-l from-purple-500 via-orange-500 to-yellow-500 text-transparent bg-clip-text text-4xl text-center font-bold animate-fadeIn">
@@ -81,7 +90,7 @@ function App() {
         </div>
       )}
 
-      <div className="col-span-1 overflow-auto scroll-smooth no-scrollbar bg-gradient-to-r from-[#0f172a] to-[#334155]">
+      <div className="col-span-1 overflow-auto scroll-smooth no-scrollbar bg-gradient-to-r from-[#0f172a] to-[#334155] pt-20">
         <h1 className="text-white text-3xl font-bold pt-5 flex justify-center items-center">
           Recent Searches <AiTwotoneDelete />
         </h1>
