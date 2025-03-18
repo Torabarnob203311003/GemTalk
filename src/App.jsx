@@ -66,11 +66,13 @@ function App() {
         <div className="container h-full overflow-auto scroll-smooth no-scrollbar flex flex-col justify-start pt-5">
           <div className='text-white'>
             {/* Display question */}
-            {askedQuestion && (
-              <div className="text-left px-10 py-3 text-xl font-semibold text-gray-300">
-                <strong className="text-white">Question:</strong> {askedQuestion}
-              </div>
-            )}
+            <div className=' flex  justify-end'>
+              {askedQuestion && (
+                <div className="text-left px-10 py-3 text-xl font-semibold text-gray-300 ml-auto">
+                  <strong className="text-white  ">You:</strong> {askedQuestion}
+                </div>
+              )}
+            </div>
             {/* Display loading or result */}
             {isLoading ? (
               <div className="text-left px-10 py-3 text-xl font-semibold text-gray-300">
@@ -78,9 +80,9 @@ function App() {
               </div>
             ) : (
               result && (
-                <div className="text-left px-10 py-3">
+                <div className="text-left px-10 py-3 mr-auto">
                   {/* Display the answers in the requested format */}
-                  <strong className="text-white text-2xl">Answer:</strong>
+                  <strong className="text-white text-2xl">Response:</strong>
                   <div className="mt-4">
                     {result.map((item, index) => (
                       <div key={index} className="mb-2">
@@ -98,12 +100,12 @@ function App() {
         </div>
 
         {/* Input box aligned at the bottom */}
-        <div className='bg-zinc-800 w-1/2 text-white m-auto rounded-3xl border border-zinc-400 flex mt-auto'>
+        <div className='bg-zinc-800 w-1/2 mb-5 text-white m-auto rounded-3xl border border-zinc-400 flex mt-auto'>
           <input
             onChange={(event) => setQuestion(event.target.value)}
             type="text"
             value={question}
-            className='w-full h-full p-3 outline-none bg-transparent text-white placeholder:text-gray-400'
+            className='w-full h-full p-5   outline-none bg-transparent text-white placeholder:text-gray-400'
             placeholder='Ask Me Anything'
           />
           <button
