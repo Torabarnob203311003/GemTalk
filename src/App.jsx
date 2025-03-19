@@ -146,8 +146,7 @@ function App() {
             )}
           </div>
         </div>
-
-        <div className="bg-zinc-800 w-1/2 mb-5 text-white m-auto rounded-3xl border border-zinc-400 flex mt-auto">
+        <div className="bg-zinc-800 w-full sm:w-3/4 md:w-1/2 lg:w-1/3 mb-5 text-white m-auto rounded-3xl border border-zinc-400 flex mt-auto p-2">
           <input
             onChange={(event) => setQuestion(event.target.value)}
             onKeyDown={(event) => {
@@ -158,7 +157,7 @@ function App() {
             }}
             type="text"
             value={question}
-            className="w-full h-full p-5 outline-none bg-transparent text-white placeholder:text-gray-400 text-2xl"
+            className="w-full h-full p-3 sm:p-4 lg:p-5 outline-none bg-transparent text-white placeholder:text-gray-400 text-lg sm:text-xl lg:text-2xl"
             placeholder="Ask Me Anything"
           />
           <button
@@ -166,12 +165,13 @@ function App() {
               askQuestion(question);
               setQuestion('');
             }}
-            className="p-5 text-2xl font-semibold"
+            className="p-3 sm:p-4 lg:p-5 text-lg sm:text-xl lg:text-2xl font-semibold"
             disabled={isLoading}
           >
             {isLoading ? 'Asking...' : 'Ask'}
           </button>
         </div>
+
       </div>
     </div>
   );
